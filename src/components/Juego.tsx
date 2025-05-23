@@ -1,19 +1,26 @@
-import { useState } from 'react';
-import type { Jugadores } from '../types';
-import './Juego.css'; // Asegúrate de importar los estilos
+import { useState } from 'react'; //Estado
+import type { Jugadores } from '../types'; //Jugadores forma de objeto
+import './Juego.css';
 
+//Recibe propiedades de los jugadores
 interface Props {
     jugadores: Jugadores;
 }
 
+//Recibe los jugadores desde props
 function Juego({ jugadores }: Props) {
+    //Llevar conteo de los puntos para cada jugador
     const [puntos, setPuntos] = useState<[number, number]>([0, 0]);
+
+    //Cambia cuando hay un ganador
     const [ganador, setGanador] = useState<string>('');
 
     const traduccionPuntos = ['0', '15', '30', '40', 'Ventaja', 'Ganador'];
 
     const darPunto = (index: 0 | 1) => {
         const otro = index === 0 ? 1 : 0;
+
+        //Hace copia de los puntos de cada jugador
         let nuevos = [...puntos] as [number, number];
 
         if (ganador) return;

@@ -1,20 +1,26 @@
-import { useState } from 'react';
-import type { Jugadores } from '../types';
-import './Configuracion.css';
+import { useState } from 'react'; //Estado del usuario
+import type { Jugadores } from '../types'; //Tipo, define como debe ser el objeto de jugadores
+import './Configuracion.css'; //Estilos
 
+//Definicion de las propiedad que recibe el componente
 interface Props {
-    jugadores: Jugadores;
-    setJugadores: React.Dispatch<React.SetStateAction<Jugadores>>;
-    iniciarJuego: () => void;
+    jugadores: Jugadores; //Estado de los jugadores
+    setJugadores: React.Dispatch<React.SetStateAction<Jugadores>>; //Funcion para actualizar el estado de los jugadores
+    iniciarJuego: () => void; //Se ejecuta cuando se inicia el juego
 }
 
-function Configuracion({ setJugadores, iniciarJuego }: Props) {
+//Funcion de configuracion
+function Configuracion({ setJugadores, iniciarJuego }: Props) { //recibe las propiedades
+
+    //Estados locales
     const [nombre1, setNombre1] = useState('');
     const [nombre2, setNombre2] = useState('');
 
+    //Manejar el inicio
     const manejarInicio = () => {
         if (nombre1 && nombre2) {
             setJugadores({ jugador1: nombre1, jugador2: nombre2 });
+            //Iniciar juego
             iniciarJuego();
         } else {
             alert('Por favor ingresa ambos nombres');
